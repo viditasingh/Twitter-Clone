@@ -1,0 +1,43 @@
+{% extends "layout.html" %} {% block title %}Vidita aur Tweet {% endblock %}
+{% block content %}
+<h1 class="mt-4 text-center fw-bold">Welcome to Django's Project!</h1>
+<div class="d-flex justify-content-center mb-4">
+  <a class="btn btn-primary btn-lg" href="{% url 'create_tweet' %}"
+    >Create a tweet</a
+  >
+</div>
+<div class="row g-4 justify-content-center">
+  {% for tweet in tweets %}
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex align-items-stretch">
+    <div class="card h-100 shadow-lg border-0">
+      {% if tweet.photo %}
+      <img
+        src="{{tweet.photo.url}}"
+        class="card-img-top"
+        alt="tweet image"
+        style="object-fit: cover; max-height: 220px"
+      />
+      {% endif %}
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title fw-semibold">@{{tweet.user.username}}</h5>
+        <p class="card-text flex-grow-1">{{tweet.text}}</p>
+        {% if tweet.user == user %}
+        <div class="mt-2 d-flex gap-2">
+          <a
+            href="{% url 'edit_tweet' tweet.id %}"
+            class="btn btn-primary btn-sm flex-fill"
+            >Edit</a
+          >
+          <a
+            href="{% url 'delete_tweet' tweet.id %}"
+            class="btn btn-danger btn-sm flex-fill"
+            >Delete</a
+          >
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

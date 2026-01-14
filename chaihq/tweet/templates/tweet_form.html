@@ -1,0 +1,21 @@
+{% extends "layout.html" %} {% block title %}Vidita aur Tweet {% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-7 col-lg-6">
+    <div class="card shadow-lg border-0 p-4">
+      <h2 class="mb-4 text-center">
+        {% if form.instance.pk %}Edit Tweet{% else %}Create Tweet{% endif %}
+      </h2>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %} {{ form.as_p }}
+        <div class="d-grid gap-2">
+          <button class="btn btn-warning btn-lg" type="submit">Submit</button>
+          <a href="{% url 'tweet_list' %}" class="btn btn-secondary btn-lg"
+            >Back to tweet list</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "layout.html" %} {% block title %}Vidita aur Tweet {% endblock %}
+{% block content %}
+<div
+  class="d-flex justify-content-center align-items-center"
+  style="min-height: 60vh"
+>
+  <div
+    class="card shadow-lg border-0 bg-dark text-light p-5 text-center"
+    style="max-width: 500px"
+  >
+    <h1 class="mb-3 fw-bold">Welcome to Django's Project!</h1>
+    <p class="lead mb-4">
+      This is a modern Twitter Clone built with Django and Bootstrap 5 dark
+      mode.<br />Share your thoughts, connect, and enjoy the experience!
+    </p>
+    <div class="d-grid gap-2">
+      <a href="{% url 'tweet_list' %}" class="btn btn-primary btn-lg"
+        >View Tweets</a
+      >
+      <a href="{% url 'create_tweet' %}" class="btn btn-success btn-lg"
+        >Create a Tweet</a
+      >
+    </div>
+  </div>
+</div>
+{% endblock %}

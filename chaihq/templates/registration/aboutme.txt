@@ -1,0 +1,3 @@
+this is the folder where it is expected to get registration and login from
+as apps do not have auth functionality within themselves.
+the auth functionality is a project feature i.e we authenticate only once per project/site

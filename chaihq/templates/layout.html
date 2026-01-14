@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% comment %} using bootstrap... import bootstrap: {% endcomment %}
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+
+    <title>{% block title %}Vidita aur Django{% endblock %}</title>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+    * {
+      font-family: "Inter", "Segoe UI";
+    }
+  </style>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="/tweet/">ChaiHQ Twitter Clone</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+            <li class="nav-item">
+              <a class="nav-link" href="/tweet/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/tweet/create">Create Tweet</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <form action="{% url 'logout' %}" method="post" class="d-inline">
+                {% csrf_token %}<button
+                  type="submit"
+                  class="btn btn-danger btn-sm ms-2"
+                >
+                  Logout
+                </button>
+              </form>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="btn btn-primary btn-sm ms-2" href="{% url 'register' %}"
+                >Register</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-success btn-sm ms-2" href="{% url 'login' %}">Login</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container py-4">{% block content %} {% endblock content %}</div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        background-color: #181a1b;
+        color: #f8f9fa;
+        min-height: 100vh;
+      }
+      .navbar {
+        background: #23272b !important;
+      }
+      .card {
+        background: #23272b;
+        color: #f8f9fa;
+        border-radius: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
+      .btn-primary,
+      .btn-warning,
+      .btn-danger,
+      .btn-success {
+        border-radius: 2rem;
+      }
+      a {
+        color: #0d6efd;
+      }
+      a:hover {
+        color: #66b2ff;
+      }
+      .form-control,
+      .form-select {
+        background-color: #23272b;
+        color: #f8f9fa;
+        border: 1px solid #444;
+      }
+      .form-control:focus {
+        background-color: #23272b;
+        color: #f8f9fa;
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+      }
+      .btn {
+        font-weight: 500;
+      }
+    </style>
+  </body>
+</html>
